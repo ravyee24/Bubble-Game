@@ -12,10 +12,22 @@ const confirmrestart = document.getElementById("confirmrestart");
 
 //for bubble generation
 let bubbleinterval;
- let score = 0;
+let score = 0;
+let gamePaused = false;
 function generateBubble(){
 
-        const colors = ["red", "blue", "green", "orange", "purple"]; 
+        const colors = [
+                    "#FF6B6B", // Coral (Red + Orange)
+                    "#9B59B6", // Amethyst (Purple + Blue)
+                    "#1ABC9C", // Turquoise (Green + Blue)
+                    "#F39C12", // Golden Orange (Yellow + Orange)
+                    "#E84393", // Pink (Red + Purple)
+                    "#6C5CE7", // Violet (Blue + Purple)
+                    "#00CEC9", // Aqua (Blue + Green)
+                    "#D35400", // Burnt Orange (Red + Yellow + Orange)
+                    "#A3CB38", // Lime (Green + Yellow)
+                    "#FD79A8"  // Rose Pink (Red + White)
+                ];
        
         let bubble = document.createElement("div")
         bubble.classList.add("bubble")
@@ -33,8 +45,6 @@ function generateBubble(){
         let rnd_color = Math.floor(Math.random() * colors.length)
 
         bubble.style.backgroundColor = colors[rnd_color];
-        bubble.innerHTML = rnd_num
-
 
         //getting height and width of the playarea box
         let width = playarea.clientWidth;
@@ -49,14 +59,19 @@ function generateBubble(){
 
 
         //for increasing the score
-        bubble.addEventListener("click",function(){
-            //increasing the score on every click
-            score++;
-            reward.innerHTML = score
+        bubble.addEventListener("click", function(){
 
-            //removing the bubble from the box
+            if(gamePaused){
+                return;
+            }
+
+            //increasing the score
+            score++;
+            reward.innerHTML = score;
+
+            //removing the bubble
             bubble.remove();
-        })
+        });
 
 }
 
@@ -175,6 +190,9 @@ function forStartStopbtn(){
     //adding listener to all the button on the div
     btncontainer.addEventListener("click", function(event){
         if(event.target === startbtn){
+
+            gamePaused = false;
+
             if(!bubbleinterval){
                 bubbleinterval = setInterval(generateBubble,800);
             }
@@ -190,6 +208,9 @@ function forStartStopbtn(){
                 startTimer();
             }
         }else if(event.target === stopbtn){
+
+            gamePaused = true;
+
             clearInterval(bubbleinterval)
             bubbleinterval = null;
 
