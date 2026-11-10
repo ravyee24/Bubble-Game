@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="name">
+        <h1>Bubble Game</h1>
+    </div>
+
+    <div class="mainbox">
+        
+        <div class="playarea" id="playing">
+            <p id="taptoplay">Tap here to Start</p>
+        </div>
+        
+    </div>
+
+    <div class="timecounter">
+        <input type="number" id="timer" min="1" max="30" value="5">
+    </div>
+
+    <div class="score">
+        <p id="reward">0</p>
+    </div>
+
+    <div class="popup" id="gamepopup">
+        <div class="popupcontent">
+            <h2>Game Over!</h2>
+            <p>Your Score: <span id="finalscore">0</span></p>
+            <button id="resumebtn">Resume</button>
+        </div>
+    </div>
+
+    <div class="restartpopup" id="restartpopup">
+        <div class="restartpopupcontent">
+            <h2>Are you sure?</h2>
+
+            <p>Do you really want to restart the game?</p>
+
+            <button id="confirmresume">Resume</button>
+
+            <button id="confirmrestart">Restart</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
